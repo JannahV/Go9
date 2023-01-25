@@ -1,0 +1,144 @@
+First I used the beginning of my code to make sure that all of my files were connected
+
+!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="./assets/style.css" />
+  </head>
+   <script src="./script.js"></script>
+
+   I then used the body to list my questions and choices for the user to choose from. I also added <div> to focus on the key elements that would make my website function as a multiple choice quiz
+
+   <body>
+    <div id="Question"></div>
+    Question 1. What is HTML? <br />
+    <input type="radio" name="question1" id="correct1" /> Hyper Markup Label
+    <br />
+    <input type="radio" name="question2" /> Hippity Mippity Lippity <br />
+    <input type="radio" name="question3" /> Howels Moving Lasso<br />
+    <input type="radio" name="question4" /> Happy Marking Luck <br />
+    Question 2. What does var mean? <br />
+    <input type="radio" name="question1" /> Vegetable<br />
+    <input type="radio" name="question2" /> Victory<br />
+    <input type="radio" name="question3" id="correct3" /> Variable<br />
+    <input type="radio" name="question4" /> Vikings <br />
+
+    Question 3. Is CSS important?<br />
+    <input type="radio" name="question1" id="correct1" /> Yes<br />
+    <input type="radio" name="question2" /> No <br />
+
+    <input type="radio" name="question3" /> Maybe <br />
+
+    <input type="radio" name="question4" /> Depends <br />
+
+    Question 4. What is Github?<br />
+    <input type="radio" name="question1" id="correct1" /> A free platform to
+    save/produce your own code <br />
+    <input type="radio" name="question2" /> A nerdy version of Discord<br />
+    <input type="radio" name="question3" /> A free flash game for kids <br />
+    <input type="radio" name="question4" /> A digital dictionary for code <br />
+
+    <div id="Timer"></div>
+
+    <div id="Start_Button">
+      <button id="Start_Quiz">Start Quiz</button>
+    </div>
+
+    <input type="submit" name="submit" value="Submit Quiz" onclick="result()" />
+
+    <div id="Quiz"></div>
+
+
+   Then I had a lot of difficulty making my quiz answers function properly in JavaScript, especially while I was getting help from my tutor (1 hour a week is not nearly enough!)
+
+let timerDiv = document.getElementById("Timer");
+let startBtn = document.getElementById("Start_Quiz");
+let quizDiv = document.getElementById("Quiz");
+let question = document.getElementById("Question");
+let quiztime = 50;
+let questionnumber = 0;
+
+let quizQuestions = [
+  {
+    question: "What is HTML?",
+    options: [
+      "Hyper_Markup_Label",
+      "Hippity_Mippity_Lippity",
+      "Howels_Moving_Lasso",
+      "Happy_Marking_Luck",
+    ],
+    answer: "Hyper_Markup_Label",
+  },
+  {
+    question: "What does var mean?",
+    options: ["Vegetable", "Victory", "Variable", "Vikings"],
+    answer: "Variable",
+  },
+  {
+    question: "Is CSS important?",
+    options: ["Yes", "No", "Maybe", "Depends"],
+    answer: "Yes",
+  },
+  {
+    question: "What is Github?",
+    options: [
+      "A_free_platform_to_save/produce_your_own_code",
+      "A_nerdy_version_of_Discord",
+      "A_free_flash_game_for_kids",
+      "A_digital_dictionary_for_code",
+    ],
+    answer: "A_free_platform_to_save/produce_your_own_code",
+  },
+  {
+    question: "Is this Coding Bootcamp easy?",
+    options: ["Choice_A", "Choice_B", "Choice_C", "Choice_D"],
+    answer: "Choice_D",
+  },
+];
+
+function startTimer() {
+  let displayTime = setInterval(function () {
+    if (quiztime > -1) {
+      timerDiv.innerHTML = `Time left is : ${quiztime}`;
+      quiztime--;
+    } else {
+      clearInterval(displayTime);
+    }
+  }, 1000);
+}
+
+function startQuiz() {
+  document.getElementById("Start_Button").style.display = "none";
+  let currentQuestion = quizQuestions[questionnumber];
+  let h2El = document.createElement("h2");
+  h2El.innerHTML = currentQuestion.question;
+  let btn = document.createElement("button");
+  quizDiv.append(h2El);
+}
+
+var score = 0;
+
+for (var i = 0; i < question.length; i++) {
+  var response = question[i].innerHTML;
+  if (response == question[i].answer) {
+    score++;
+    alert("Correct!");
+  } else {
+    alert("Wrong :(");
+  }
+}
+alert("You got" + score + "/" + question.length);
+
+function init() {
+  startTimer();
+  startQuiz();
+}
+
+startBtn.addEventListener("click", init);
+
+
+   Which to my frustation of going back and forth with my CSS, HTML and JAVAScript, I only managed to get the timer to work.
